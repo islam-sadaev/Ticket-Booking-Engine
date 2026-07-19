@@ -26,6 +26,11 @@ namespace TicketBooking.Data
 
             modelBuilder.Entity<Event>().HasKey(e=>e.Id);
 
+            modelBuilder.Entity<Event>().Property(v => v.RowVersion).IsRowVersion();
+
+
+
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.ComponentModel.Design;
 using TicketBooking.Data;
 using TicketBooking.Profiles;
 using TicketBooking.Services;
+using TicketBooking.Data.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 

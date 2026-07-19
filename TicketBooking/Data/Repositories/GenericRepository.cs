@@ -26,7 +26,7 @@ namespace TicketBooking.Data.Repositories
 
         public async Task AddAsync(TEntity entity)
         {
-             _appDbContext.Set<TEntity>().Add(entity);
+            await _appDbContext.Set<TEntity>().AddAsync(entity);
         }
 
         public void Update(TEntity entity)
