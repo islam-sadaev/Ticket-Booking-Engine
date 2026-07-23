@@ -28,6 +28,8 @@ namespace TicketBooking.Data
 
             modelBuilder.Entity<Event>().Property(v => v.RowVersion).IsRowVersion();
 
+            modelBuilder.Entity<Event>().Property(d => d.EventDate).forma
+
 
 
 

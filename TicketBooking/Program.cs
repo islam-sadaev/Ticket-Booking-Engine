@@ -4,6 +4,7 @@ using TicketBooking.Data;
 using TicketBooking.Profiles;
 using TicketBooking.Services;
 using TicketBooking.Data.UnitOfWork;
+using TicketBooking.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,11 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped<IEventService,EventService>();
 
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+builder.Services.AddAntiforgery();
+
 
 var app = builder.Build();
 
@@ -32,7 +38,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseStaticFiles();
+app.UseAntiforgery();
 
 app.MapControllers();
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
 
 app.Run();

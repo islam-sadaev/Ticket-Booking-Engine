@@ -7,7 +7,7 @@ namespace TicketBooking.Services
     public interface IEventService
     {
 
-        ActionResult<List<Event>> GetAllEvents();
+        Task<List<Event>> GetAllEventsAsync();
         Task<BookEventDto> BookEventAsync(int eventId, BookEventDto dto);
 
     }

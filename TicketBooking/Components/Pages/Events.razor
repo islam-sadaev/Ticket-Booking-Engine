@@ -1,0 +1,68 @@
+﻿@page "/events"
+@using TicketBooking.Services
+@using TicketBooking.Models
+
+@inject IEventService EventService
+
+<PageTitle>Events</PageTitle>
+
+<h3>Evenementen</h3>
+
+<style>
+	.td {
+		padding:5px;
+		
+	}
+</style>
+
+@if(events==null)
+{
+	<p> De pagina is aan het laden...</p>
+}
+else
+{
+	<table>
+		
+		<tr>
+			<th>Event naam</th>
+			<th>Event datum</th>
+			<th>Tickets beschikbaar</th>
+		</tr>
+
+		@foreach(Event e in events)
+			{
+		<tr>
+			<td>@e.Name</td>
+			<td>@e.EventDate.ToString("dd/mm/yyyy")</td>
+			<td>@e.AvailableTickets</td>
+		</tr>
+			}
+	</table>
+}
+
+@code {
+	private List<Event> events;
+
+	protected override async Task OnInitializedAsync()
+	{
+		events = await EventService.GetAllEventsAsync();
+	}
+
+	private string BackgroundColorAvaibleTickets(int avaibleTickets, int TotalCapacity)
+	{
+		int resultPercent=(avaibleTickets/TotalCapacity)*100;
+
+		if(resultPercent<=25)
+		{
+			return "red"
+		}
+		else if(resultPercent>25 && resultPercent<=50)
+		{
+			return "yellow"
+		}
+		else
+		{
+			return "green"
+		}
+	}
+}

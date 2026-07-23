@@ -24,9 +24,9 @@ namespace TicketBooking.Services
             _uow = unitOfWork;
         }
 
-        public ActionResult<List<Event>> GetAllEvents()
+        public async Task<List<Event>> GetAllEventsAsync()
         {
-            List<Event> events = _appDbContext.Events.ToList();
+            List<Event> events = await _appDbContext.Events.ToListAsync();
 
             return events;
 
