@@ -8,6 +8,7 @@ namespace TicketBooking.Services
     {
 
         Task<List<Event>> GetAllEventsAsync();
+        Task<Event> GetEventByIdAsync(int id);
         Task<BookEventDto> BookEventAsync(int eventId, BookEventDto dto);
 
     }

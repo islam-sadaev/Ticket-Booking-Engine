@@ -76,6 +76,10 @@ namespace TicketBooking.Services
             
             
         }
+        public async Task<Event?> GetEventByIdAsync(int id)
+        {
+            return await _uow.Events.GetByIdAsync(id);
+        }
 
     }
 }

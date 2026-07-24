@@ -1,12 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="d-flex" style="min-height: 100vh;">
-    <div class="sidebar bg-white border-end" style="width: 250px;">
+<div class="page d-flex flex-row" style="min-height: 100vh; background-color: #f8f9fa;">
+    <div class="sidebar shadow" style="background-color: #0f172a; width: 260px; flex-shrink: 0; z-index: 1000;">
         <NavMenu />
     </div>
 
-    <main class="flex-grow-1" style="background-color: #f8f9fa;">
-        <article class="p-5">
+    <main class="flex-grow-1 d-flex flex-column" style="overflow-y: auto;">
+        <article class="content px-4 py-5 w-100 mx-auto" style="max-width: 1200px;">
             @Body
         </article>
     </main>

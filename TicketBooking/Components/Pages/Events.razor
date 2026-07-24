@@ -1,68 +1,88 @@
 ﻿@page "/events"
 @using TicketBooking.Services
 @using TicketBooking.Models
-
 @inject IEventService EventService
 
-<PageTitle>Events</PageTitle>
+<PageTitle>Evenementen</PageTitle>
 
-<h3>Evenementen</h3>
+<div class="d-flex justify-content-between align-items-end mb-4">
+    <div>
+        <h2 class="fw-bold mb-0 text-dark">Aankomende Evenementen</h2>
+        <p class="text-muted mb-0">Ontdek en boek tickets voor de beste evenementen.</p>
+    </div>
+</div>
 
-<style>
-	.td {
-		padding:5px;
-		
-	}
-</style>
-
-@if(events==null)
+@if (events == null)
 {
-	<p> De pagina is aan het laden...</p>
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Laden...</span>
+        </div>
+        <p class="text-muted mt-3">Evenementen worden geladen...</p>
+    </div>
 }
 else
 {
-	<table>
-		
-		<tr>
-			<th>Event naam</th>
-			<th>Event datum</th>
-			<th>Tickets beschikbaar</th>
-		</tr>
-
-		@foreach(Event e in events)
-			{
-		<tr>
-			<td>@e.Name</td>
-			<td>@e.EventDate.ToString("dd/mm/yyyy")</td>
-			<td>@e.AvailableTickets</td>
-		</tr>
-			}
-	</table>
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover table-borderless mb-0 align-middle">
+                <thead class="table-light text-muted" style="border-bottom: 2px solid #f3f4f6;">
+                    <tr>
+                        <th class="py-3 px-4 fw-semibold">Event Naam</th>
+                        <th class="py-3 fw-semibold">Datum</th>
+                        <th class="py-3 fw-semibold">Capaciteit</th>
+                        <th class="py-3 fw-semibold">Beschikbaar</th>
+                        <th class="py-3 px-4 text-end fw-semibold">Actie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var e in events)
+                    {
+                        <tr class="border-bottom">
+                            <td class="py-3 px-4 fw-bold text-dark">@e.Name</td>
+                            <td class="py-3 text-secondary">
+                                <i class="bi bi-calendar2-week me-2"></i>@e.EventDate.ToString("dd/MM/yyyy")
+                            </td>
+                            <td class="py-3 text-secondary">@e.TotalCapacity</td>
+                            <td class="py-3">
+                                <span class="badge rounded-pill px-3 py-2 @BackgroundColorAvaibleTickets(e.AvailableTickets, e.TotalCapacity)">
+                                    @e.AvailableTickets tickets
+                                </span>
+                            </td>
+                            <td class="py-3 px-4 text-end">
+                                <a href="/book/@e.Id" class="btn btn-outline-primary btn-sm rounded-pill px-4 fw-semibold">Boek Nu</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 }
 
 @code {
-	private List<Event> events;
+    private List<Event> events;
 
-	protected override async Task OnInitializedAsync()
-	{
-		events = await EventService.GetAllEventsAsync();
-	}
+    protected override async Task OnInitializedAsync()
+    {
+        events = await EventService.GetAllEventsAsync();
+    }
 
-	private string BackgroundColorAvaibleTickets(int avaibleTickets, int TotalCapacity)
-	{
-		int resultPercent=(avaibleTickets/TotalCapacity)*100;
+    private string BackgroundColorAvaibleTickets(int avaibleTickets, int TotalCapacity)
+    {
+        double resultPercent = (double)avaibleTickets / TotalCapacity * 100;
 
-		if(resultPercent<=25)
-		{
-			return "red"
-		}
-		else if(resultPercent>25 && resultPercent<=50)
-		{
-			return "yellow"
-		}
-		else
-		{
-			return "green"
-		}
-	}
+        if (resultPercent <= 25)
+        {
+            return "bg-red";
+        }
+        else if (resultPercent > 25 && resultPercent <= 50)
+        {
+            return "bg-yellow";
+        }
+        else
+        {
+            return "bg-green";
+        }
+    }
 }

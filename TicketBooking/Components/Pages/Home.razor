@@ -1,11 +1,68 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
-<h2>Welkom bij onze evenementen!</h2>
+<PageTitle>Welkom bij TicketBooking</PageTitle>
 
+<div class="d-flex flex-column justify-content-center align-items-center py-4" style="min-height: 80vh;">
 
+    <div class="card shadow border-0 text-center p-5 mb-5" style="max-width: 850px; border-radius: 2rem; background: linear-gradient(145deg, #ffffff, #f8f9fa);">
+        <div class="card-body">
+            <div class="mb-4 d-inline-block p-3 rounded-circle" style="background-color: #e0e7ff;">
+                <i class="bi bi-ticket-detailed-fill" style="font-size: 3rem; color: #4f46e5;"></i>
+            </div>
 
+            <h1 class="display-4 fw-bolder mb-4" style="background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Het Ticket Portaal van de Toekomst
+            </h1>
 
-@code {
+            <p class="lead text-secondary mb-5 px-md-5" style="font-size: 1.25rem; line-height: 1.6;">
+                Boek veilig, eenvoudig en razendsnel tickets voor de allerbeste evenementen. Geen lange wachtrijen, direct toegang tot jouw favoriete shows.
+            </p>
 
-}
+            <a href="/events" class="btn btn-primary btn-lg px-5 py-3 shadow-sm rounded-pill hover-lift" style="font-weight: 600; font-size: 1.1rem;">
+                Bekijk Alle Evenementen <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="row w-100 text-center justify-content-center" style="max-width: 1000px;">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift">
+                <div class="card-body">
+                    <div class="fs-1 mb-3">⚡</div>
+                    <h5 class="fw-bold text-dark">Razendsnel</h5>
+                    <p class="text-muted small mb-0">Jouw tickets in slechts 3 klikken geboekt via ons geoptimaliseerde platform.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift">
+                <div class="card-body">
+                    <div class="fs-1 mb-3">🔒</div>
+                    <h5 class="fw-bold text-dark">100% Veilig</h5>
+                    <p class="text-muted small mb-0">Geavanceerde encryptie zorgt ervoor dat jouw betaling en gegevens veilig blijven.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift">
+                <div class="card-body">
+                    <div class="fs-1 mb-3">📱</div>
+                    <h5 class="fw-bold text-dark">Altijd bij je</h5>
+                    <p class="text-muted small mb-0">Toon je digitale tickets direct vanaf je smartphone bij de ingang.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-lift {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+        }
+</style>

@@ -1,8 +1,22 @@
-﻿body {
-
-
+﻿.bg-green {
+    background-color: #d1fae5 !important;
+    color: #065f46 !important;
+    font-weight: 600;
 }
 
-.td{
-    padding:5px;
+.bg-yellow {
+    background-color: #fef3c7 !important;
+    color: #92400e !important;
+    font-weight: 600;
+}
+
+.bg-red {
+    background-color: #fee2e2 !important;
+    color: #b91c1c !important;
+    font-weight: 600;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8fafc;
+    transition: background-color 0.2s ease-in-out;
 }
